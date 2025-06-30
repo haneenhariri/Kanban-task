@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+*{
+  box-sizing: border-box;
+  
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('/fonts/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('/fonts/Tajawal-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Tajawal', sans-serif;
+}
