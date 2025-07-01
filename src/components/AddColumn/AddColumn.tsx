@@ -2,16 +2,34 @@ import { useState } from "react";
 import AddNew from "../ui/Button/AddNew";
 import Form from "../ui/Form/Form";
 
-export default function AddColumn() {
+interface AddColumnProps {
+  onColumnAdded: (columnName: string) => void;
+}
+export default function AddColumn({onColumnAdded} : AddColumnProps) {
   const [showForm , setShowForm] = useState(false);
-  const handelShowAddForm = () => 
+
+  const toggleForm  = () => 
   {
-    setShowForm(!showForm)
+    setShowForm(prev => !prev)
   }
+  const handleAddColumn = (columnName: string) => {
+    onColumnAdded(columnName);
+    toggleForm();
+  };
   return (
     <div className="p-2.5 rounded-sm h-min sm:w-[300px] text-white bg-white/20 shadow-sm">
-      {!showForm ? (<AddNew showForm={handelShowAddForm} addNew="Add new column"/>) :
-      (<Form place="add new column" setShowForm={setShowForm}/>)}
+      {showForm ? (
+        <Form 
+          placeholder="Add new column" 
+          onSubmit={handleAddColumn}
+          onClose={toggleForm}
+        />
+      ) : (
+        <AddNew 
+          onClick={toggleForm} 
+          label="Add new column"
+        />
+      )}
     </div>
   )
 }
