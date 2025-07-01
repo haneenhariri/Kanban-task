@@ -11,7 +11,7 @@ export default function AddTask() {
   return (
     <div className="p-2.5 rounded-sm h-min  text-white bg-blue-950 shadow-sm">
         {!showForm ? (<AddNew showForm={handelShowAddForm} addNew="Add new Task"/>) :
-        (<Form setShowForm={setShowForm}/>)}
+        (<Form place="Add new task" setShowForm={setShowForm}/>)}
     </div>
   )
 }

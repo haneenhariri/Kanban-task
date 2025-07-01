@@ -11,7 +11,7 @@ export default function AddColumn() {
   return (
     <div className="p-2.5 rounded-sm h-min sm:w-[300px] text-white bg-white/20 shadow-sm">
       {!showForm ? (<AddNew showForm={handelShowAddForm} addNew="Add new column"/>) :
-      (<Form setShowForm={setShowForm}/>)}
+      (<Form place="add new column" setShowForm={setShowForm}/>)}
     </div>
   )
 }
