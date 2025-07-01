@@ -4,14 +4,23 @@ import up from '../../assets/icons/arrow-up.svg'
 import edite from '../../assets/icons/edit.svg'
 import deleteIcon from '../../assets/icons/delete.svg'
 import { useState } from "react";
+import { deleteTask } from "../../redux/slice/boardSlice";
+import { useDispatch } from "react-redux";
 
 export interface TaskProps{
   title : string;
   description : string;
-  key : string;
+  id: string; 
+  columnId: string;
 }
-export default function Task({title , description } : TaskProps) {
+export default function Task({title , description , id , columnId } : TaskProps) {
   const [show , setShow] = useState(false);
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+      console.log("Deleting:", columnId, id);
+
+    dispatch(deleteTask({ columnId, taskId: id }));
+  };
   const onToggle = () =>
   {
     setShow(!show)
@@ -30,7 +39,7 @@ export default function Task({title , description } : TaskProps) {
             <button  className="p-1 hover:bg-gray-100 rounded">
               <img className="w-4 h-4" src={edite} alt="edit" />
             </button>
-            <button  className="p-1 hover:bg-gray-100 rounded">
+            <button onClick={handleDelete} className="p-1 hover:bg-gray-100 rounded">
               <img className="w-5 h-5" src={deleteIcon} alt="delete" />
             </button>
           </div>
