@@ -1,14 +1,14 @@
 import add from '../../../assets/icons/+.svg'
 export interface AddNewbuttonProps 
 {
-    addNew : string;
-    showForm : () => void;
+    label : string;
+    onClick : () => void;
 }
-export default function AddNew({addNew , showForm} : AddNewbuttonProps) {
+export default function AddNew({label , onClick} : AddNewbuttonProps) {
   return (
-    <button onClick={showForm} className=" w-full flex gap-2 items-center">
+    <button onClick={onClick} className=" w-full flex gap-2 items-center">
       <img src={add} alt="add" className=' w-4 h-4' />
-      <p>{addNew}</p>
+      <p>{label}</p>
     </button>
   )
 }
