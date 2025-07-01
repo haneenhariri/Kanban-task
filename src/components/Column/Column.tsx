@@ -22,7 +22,7 @@ export default function Column({column} : ColumnProps) {
     <div className=" flex flex-col h-min shadow-sm gap-2 p-2.5 bg-white/90 sm:w-[300px] rounded-sm ">
       <ColumnTitle columnTitle={column.name}/>
       {tasks.map((task) => ( 
-        <Task key={task.id} description = {task.description} title={task.title} />) )}
+        <Task id={task.id} columnId={column.id} key={task.id} description = {task.description} title={task.title} />) )}
       <AddTask onTaskAdded={handleAddTask}/>
     </div>
   )
