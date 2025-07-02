@@ -38,9 +38,37 @@ const boardSlice = createSlice({
           if (column) {
             column.tasks = column.tasks.filter(task => task.id !== action.payload.taskId);
           }
+        },
+        editeTask(state, action: PayloadAction<{columnId: string; taskId:string; updatedTask: Partial<Task>}>){
+          const column = state.columns.find(col => col.id === action.payload.columnId);
+          if(column) {
+            const task = column.tasks.find( t => t.id === action.payload.taskId);
+            if(task){
+              Object.assign(task ,action.payload.updatedTask)
+            }
+          }
+        },
+        reorderColumns: (state, action) => {
+          state.columns = action.payload;
+        },
+        moveTask: (state, action) => {
+          const { source, destination } = action.payload;
+
+          const sourceColumn = state.columns.find(col => col.id === source.droppableId);
+          const destColumn = state.columns.find(col => col.id === destination.droppableId);
+
+          if (!sourceColumn || !destColumn) return;
+
+          const task = sourceColumn.tasks[source.index];
+          if (!task) return;
+
+          // إزالة المهمة من العمود المصدر
+          sourceColumn.tasks.splice(source.index, 1);
+          // إضافة المهمة إلى العمود الهدف
+          destColumn.tasks.splice(destination.index, 0, task);
         }
     }
 })
-export const { addColumn , addTask , deleteTask} = boardSlice.actions;
+export const { moveTask , reorderColumns , addColumn , addTask , deleteTask , editeTask} = boardSlice.actions;
 
 export default boardSlice.reducer

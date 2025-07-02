@@ -1,10 +1,8 @@
 import { useState } from "react";
 import AddNew from "../ui/Button/AddNew";
 import Form from "../ui/Form/Form";
+import type { AddColumnProps } from "../../types/types";
 
-interface AddColumnProps {
-  onColumnAdded: (columnName: string) => void;
-}
 export default function AddColumn({onColumnAdded} : AddColumnProps) {
   const [showForm , setShowForm] = useState(false);
 
