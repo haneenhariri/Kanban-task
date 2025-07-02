@@ -3,7 +3,7 @@ import down from '../../assets/icons/arrow-down.svg'
 import up from '../../assets/icons/arrow-up.svg'
 import edite from '../../assets/icons/edit.svg'
 import deleteIcon from '../../assets/icons/delete.svg'
-import { useState } from "react";
+import { useState, memo } from "react";
 import { deleteTask, editeTask } from "../../redux/slice/boardSlice";
 import { useDispatch } from "react-redux";
 
@@ -14,7 +14,7 @@ export interface TaskProps{
   columnId: string;
 }
 
-export default function Task({title , description , id , columnId } : TaskProps) {
+const Task = memo(function Task({title , description , id , columnId } : TaskProps) {
   const [show , setShow] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(title);
@@ -29,7 +29,7 @@ export default function Task({title , description , id , columnId } : TaskProps)
 
   const onToggle = () => {
     setShow(!show);
-    setIsEditing(false); // لما تغلق الوصف تأكد ان الفورم مخفي
+    setIsEditing(false);  
   };
 
   const handleSave = (e: React.FormEvent) => {
@@ -47,8 +47,7 @@ export default function Task({title , description , id , columnId } : TaskProps)
   };
 
   return (
-    <div className="flex flex-col gap-2.5 border border-gray-200 shadow-sm rounded-sm p-2 bg-white">
-      <div className="w-full">
+    <div className="flex w-full flex-col gap-2.5 border border-gray-200 shadow-sm rounded-sm p-2 bg-white cursor-grab active:cursor-grabbing hover:shadow-md hover:border-blue-300 transition-shadow duration-150 select-none">
         <button onClick={onToggle} className="items-center w-full flex justify-between">
           <TaskTitle taskTitle={title} />
           {show ? (
@@ -57,7 +56,6 @@ export default function Task({title , description , id , columnId } : TaskProps)
             <img className="w-5 h-5" src={up} alt="arrow-up" />
           )}
         </button>
-
         {show && (
           <div className="mt-2">
             {isEditing ? (
@@ -116,7 +114,8 @@ export default function Task({title , description , id , columnId } : TaskProps)
             )}
           </div>
         )}
-      </div>
     </div>
   );
-}
+});
+
+export default Task;

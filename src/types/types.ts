@@ -9,3 +9,6 @@ export interface HeadertitleProps
 export interface ColumnProps {
   column: Column;
 }
+export interface AddColumnProps {
+  onColumnAdded: (columnName: string) => void;
+}
