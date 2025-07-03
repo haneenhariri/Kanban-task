@@ -175,6 +175,7 @@ export interface ColumnProps {
 /**
  * Task Header Props
  * Props for the task header component that handles expand/collapse
+ * Note: Drag handle props are now applied to the entire task container for better mobile UX
  */
 export interface TaskHeaderProps {
   /** Task title to display */
@@ -183,8 +184,6 @@ export interface TaskHeaderProps {
   show: boolean;
   /** Function to toggle task expansion */
   onToggle: () => void;
-  /** Drag handle props for the task */
-  dragHandleProps?: DraggableProvidedDragHandleProps | null;
 }
 
 /**

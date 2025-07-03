@@ -43,10 +43,17 @@ const Task = memo(function Task({
 
   return (
     <div
-      className="flex z-10 flex-col gap-2 border border-gray-200 dark:border-slate-600 rounded-lg p-3 bg-white dark:bg-slate-800 shadow-sm hover:shadow-md mb-2 cursor-grab active:cursor-grabbing"
+      className="flex z-10 flex-col gap-2 border border-gray-200 dark:border-slate-600 rounded-lg p-3 bg-white dark:bg-slate-800 shadow-sm hover:shadow-md mb-2 cursor-grab active:cursor-grabbing touch-manipulation select-none"
+      style={{
+        // Improve touch handling on mobile devices
+        touchAction: 'manipulation',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitTouchCallout: 'none'
+      }}
       {...dragHandleProps}
     >
-      {/* Task header - always visible */}
+      {/* Task header - always visible, now without drag handle props for better mobile UX */}
       <TaskHeader title={title} show={show} onToggle={onToggle} />
 
       {/* Task content - conditionally rendered based on show state */}
