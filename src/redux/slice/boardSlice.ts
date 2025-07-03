@@ -1,4 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { STORAGE_KEYS } from "../../constants";
+
 export interface Task {
   id: string;
   title: string;
@@ -14,8 +16,9 @@ export interface Column {
 export interface BoardState {
   columns: Column[];
 }
+
 const loadDataFromLocalStorage = (): BoardState => {
-  const saved = localStorage.getItem('Board');
+  const saved = localStorage.getItem(STORAGE_KEYS.BOARD);
   return saved ? JSON.parse(saved) : { columns: [] };
 };
 const initialState : BoardState = loadDataFromLocalStorage();
@@ -61,10 +64,7 @@ const boardSlice = createSlice({
 
           const task = sourceColumn.tasks[source.index];
           if (!task) return;
-
-          // إزالة المهمة من العمود المصدر
           sourceColumn.tasks.splice(source.index, 1);
-          // إضافة المهمة إلى العمود الهدف
           destColumn.tasks.splice(destination.index, 0, task);
         }
     }

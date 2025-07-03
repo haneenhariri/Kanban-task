@@ -1,46 +1,34 @@
-import { useState, type FormEvent } from "react";
+import { useCallback, useState, type FormEvent } from "react";
 import Input from "../Input/Input";
-import close from '../../../assets/icons/close-x.svg';
+import CloseButton from "../Button/CloseButton";
+import SubmitButton from "../Button/SubmitButton";
+import type { FormProps } from "../../../types/ui.types";
 
-export interface FormProps {
-  onClose: () => void;
-  placeholder: string;
-  onSubmit: (value: string) => void;
-}
 
 export default function Form({ onClose, placeholder, onSubmit }: FormProps) {
   const [value, setValue] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (value.trim()) {
-      onSubmit(value);
-      setValue('');
-    }
-  };
+  const handleSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      if (value.trim()) {
+        onSubmit(value);
+        setValue('');
+      }
+    },
+    [value, onSubmit]
+  );
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <Input 
         value={value} 
         setValue={setValue} 
-        place={placeholder}
+        placeholder ={placeholder}
       />
       <div className="my-2.5 w-full flex gap-2.5 items-center">
-        <button 
-          type="submit" 
-          className="px-10 py-2 bg-white/15 rounded-sm hover:bg-white/25 transition-colors"
-        >
-          Save
-        </button> 
-        <button 
-          onClick={onClose} 
-          type="button"
-          className="p-1 hover:bg-white/10 rounded"
-          aria-label="Close form"
-        >
-          <img src={close} className="w-5 h-5" alt="Close" />
-        </button>
+        <SubmitButton className="bg-white/25 hover:bg-white/40 dark:bg-slate-600/50 dark:hover:bg-slate-500/60 text-white transition-colors duration-200" label="Save"/>
+        <CloseButton onClose={onClose} />
       </div>
     </form>
   );

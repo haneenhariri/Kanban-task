@@ -1,14 +1,35 @@
-//all types write here 
+// Main types file - Re-exports for convenience
+// This file serves as a central point for importing types
 
-import type { Column } from "../redux/slice/boardSlice";
+// UI Types
+export type {
+  HeadertitleProps,
+  ColumnTitleProps,
+  TaskTitleProps,
+  FormProps,
+  InputProps,
+  AddNewButtonProps,
+  AddItemProps
+} from './ui.types';
 
-export interface HeadertitleProps
-{
-    BoardTitle : string;
+// Board Types
+export type {
+  ColumnProps,
+  TaskProps,
+  DragEndParams,
+  Task,
+  Column
+} from './board.types';
+
+
+
+export interface ColumnFooterProps {
+  columnId: string;
 }
-export interface ColumnProps {
-  column: Column;
-}
-export interface AddColumnProps {
-  onColumnAdded: (columnName: string) => void;
+
+export interface TaskContentProps {
+  title: string;
+  description: string;
+  taskId: string;
+  columnId: string;
 }
