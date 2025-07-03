@@ -1,11 +1,13 @@
-export interface InputProps 
-{
-    place : string;
-    value : string;
-    setValue: (value: string) => void;
-}
-export default function Input({place , value , setValue} : InputProps) {
+import type { InputProps } from "../../../types/ui.types";
+
+export default function Input({placeholder  , value , setValue} : InputProps) {
   return (
-    <input type='text' value={value} onChange={ (e) => setValue(e.target.value)} className=" w-full bg-white/10  p-2 rounded-sm outline-blue-400 placeholder:text-white" placeholder={place} />
+    <input
+      type='text'
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      className="border  dark:border-slate-600/50 w-full bg-white/10 dark:bg-slate-700/30 p-2 rounded-md outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500  dark:placeholder:text-slate-300 transition-all duration-200"
+      placeholder={placeholder}
+    />
   )
 }

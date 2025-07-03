@@ -1,22 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
 import boardReducer from "../slice/boardSlice";
-
+import { STORAGE_KEYS, ANIMATION_DURATION } from "../../constants";
+import themeReducer from '../slice/themeSlice'
 const store = configureStore({
     reducer : {
         boards : boardReducer,
+        theme: themeReducer,
     }
 })
 
-// Debounced localStorage saving
-let saveTimeout: NodeJS.Timeout;
+let saveTimeout: ReturnType<typeof setTimeout>;
 store.subscribe(() => {
   if (saveTimeout) {
     clearTimeout(saveTimeout);
   }
 
   saveTimeout = setTimeout(() => {
-    localStorage.setItem('Board', JSON.stringify(store.getState().boards));
-  }, 300); // حفظ بعد 300ms من آخر تغيير
+    localStorage.setItem(STORAGE_KEYS.BOARD, JSON.stringify(store.getState().boards));
+  }, ANIMATION_DURATION.DEBOUNCE_SAVE);
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,9 +1,7 @@
-export interface TaskTitleProps
-{
-    taskTitle : string;
-}
+import type { TaskTitleProps } from "../../../types/ui.types";
+
 export default function TaskTitle({taskTitle} : TaskTitleProps) {
   return (
-    <h2 className="font-normal text-lg">{taskTitle}</h2>
+    <h2 className="font-medium text-lg text-gray-800 dark:text-white transition-colors duration-200">{taskTitle}</h2>
   )
 }

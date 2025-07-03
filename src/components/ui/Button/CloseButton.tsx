@@ -1,13 +1,14 @@
-import close from '../../../assets/icons/close-x.svg'
+import close from '@/assets/icons/close-x.svg';
+import type { CloseButtonProps } from '../../../types/ui.types';
 
-interface CloseButtonProps {
-  setShowForm: (value: boolean) => void;
-}
-
-export default function CloseButton({ setShowForm }: CloseButtonProps) {
+export default function CloseButton({onClose , IconColor } : CloseButtonProps) {
   return (
-    <button onClick={() => setShowForm(false)} type="button">
-      <img src={close} className="w-5 h-5" alt="close" />
-    </button>
+     <button 
+          onClick={onClose} 
+          type="button"
+          aria-label="Close form"
+        >
+          <img src={close}  className={`w-5 h-5 ${IconColor} `} alt="Close" />
+        </button>
   )
 }
