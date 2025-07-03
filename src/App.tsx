@@ -1,35 +1,24 @@
 import BoardPage from '@/pages/BoardPage';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import type { AppDispatch } from './redux';
-import { setTheme } from './redux/slice/themeSlice';
+import ThemeProvider from '@/components/providers/ThemeProvider';
 
-// مكون لتهيئة السمة (بديل ThemeProvider السابق)
-function ThemeInitializer({ children }: { children: React.ReactNode }) {
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    // التهيئة الأولية للسمة
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-      dispatch(setTheme(e.matches ? 'dark' : 'light'));
-    };
-    
-    mediaQuery.addEventListener('change', handleSystemThemeChange);
-    
-    return () => {
-      mediaQuery.removeEventListener('change', handleSystemThemeChange);
-    };
-  }, [dispatch]);
-
-  return <>{children}</>;
-}
-
+/**
+ * App Component
+ *
+ * Root component of the Kanban Task Board application.
+ * Follows Single Responsibility Principle by focusing solely on:
+ * - Setting up the main application structure
+ * - Wrapping the application with necessary providers
+ *
+ * The theme management logic has been extracted to a separate ThemeProvider component
+ * to maintain clean separation of concerns.
+ *
+ * @returns JSX element representing the root application
+ */
 function App() {
   return (
-      <ThemeInitializer>
-        <BoardPage/>
-      </ThemeInitializer>
+    <ThemeProvider>
+      <BoardPage />
+    </ThemeProvider>
   );
 }
 

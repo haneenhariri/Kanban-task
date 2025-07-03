@@ -1,4 +1,4 @@
-import type { Column, Task } from "@/types/board.types";
+import type { Column, Task } from "@/types/types";
 import ColumnTitle from "../ui/Titles/ColumnTitle";
 
 export default function ColumnHeader( {column , tasks} : {column: Column, tasks: Task[] }) {

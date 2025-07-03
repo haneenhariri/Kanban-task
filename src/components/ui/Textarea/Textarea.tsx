@@ -1,9 +1,31 @@
+/**
+ * Textarea Props Interface
+ * Props for the Textarea component used in task editing
+ */
 export interface TextareaProps {
+  /** Current description text value */
   editDescription: string;
+  /** Function to update the description text */
   setEditDescription: (value: string) => void;
 }
 
-export default function Textarea({editDescription , setEditDescription} : TextareaProps) {
+/**
+ * Textarea Component
+ *
+ * A styled textarea component for editing task descriptions.
+ * Features:
+ * - Multi-line text input with fixed height (4 rows)
+ * - Dark mode support with smooth transitions
+ * - Disabled resize to maintain consistent layout
+ * - Focus states with ring effects
+ * - Consistent styling with other form elements
+ *
+ * @param props - Textarea component props
+ * @param props.editDescription - Current description text
+ * @param props.setEditDescription - Function to update description
+ * @returns JSX element representing the styled textarea
+ */
+export default function Textarea({editDescription, setEditDescription}: TextareaProps) {
   return (
     <textarea
       value={editDescription}

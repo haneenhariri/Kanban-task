@@ -4,27 +4,50 @@ import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
+/**
+ * ThemeToggle Component
+ *
+ * An interactive toggle button for switching between light and dark themes.
+ * Features:
+ * - Animated toggle switch with smooth transitions
+ * - Visual indicators (sun/moon icons) for current theme
+ * - Gradient backgrounds that change based on theme
+ * - Accessible with proper aria-label
+ * - Memoized for performance optimization
+ * - Connected to Redux store for theme state management
+ *
+ * The component displays:
+ * - Light mode: Yellow/orange gradient with sun icon
+ * - Dark mode: Blue/purple gradient with moon icon
+ *
+ * @returns JSX element representing the theme toggle button
+ */
 const ThemeToggle = memo(function ThemeToggle() {
-const theme = useSelector((state: RootState) => state.theme);
-const dispatch = useDispatch();
-const handleToggle = () => dispatch(toggleTheme());
+  // Get current theme from Redux store
+  const theme = useSelector((state: RootState) => state.theme);
+  const dispatch = useDispatch();
+
+  // Handle theme toggle action
+  const handleToggle = () => dispatch(toggleTheme());
   return (
     <button
       onClick={handleToggle}
       className="relative inline-flex h-8 w-14 items-center justify-center rounded-full bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-gray-700 dark:focus:ring-offset-gray-900"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
-      {/* Toggle Background */}
+      {/* Toggle Background Gradients */}
+      {/* Dark mode gradient - visible only in dark mode */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 transition-opacity duration-200 dark:opacity-100" />
+      {/* Light mode gradient - visible only in light mode */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 opacity-100 transition-opacity duration-200 dark:opacity-0" />
-      
-      {/* Toggle Circle */}
+
+      {/* Toggle Circle - moves left/right based on theme */}
       <div
         className={`absolute h-6 w-6 transform rounded-full bg-white shadow-lg transition-transform duration-200 ${
           theme === 'dark' ? 'translate-x-3' : '-translate-x-3'
         }`}
       >
-        {/* Sun Icon */}
+        {/* Sun Icon - visible in light mode */}
         <div
           className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
             theme === 'light' ? 'opacity-100' : 'opacity-0'
@@ -34,6 +57,7 @@ const handleToggle = () => dispatch(toggleTheme());
             className="h-4 w-4 text-yellow-500"
             fill="currentColor"
             viewBox="0 0 20 20"
+            aria-hidden="true"
           >
             <path
               fillRule="evenodd"
@@ -42,8 +66,8 @@ const handleToggle = () => dispatch(toggleTheme());
             />
           </svg>
         </div>
-        
-        {/* Moon Icon */}
+
+        {/* Moon Icon - visible in dark mode */}
         <div
           className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
             theme === 'dark' ? 'opacity-100' : 'opacity-0'
@@ -53,6 +77,7 @@ const handleToggle = () => dispatch(toggleTheme());
             className="h-4 w-4 text-purple-400"
             fill="currentColor"
             viewBox="0 0 20 20"
+            aria-hidden="true"
           >
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
           </svg>

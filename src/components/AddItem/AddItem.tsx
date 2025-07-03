@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { AddItemProps } from "@/types/ui.types";
+import type { AddItemProps } from "@/types/types";
 import Form from "../ui/Form/Form";
 import AddNew from "../ui/Button/AddNew";
 

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import boardReducer from "../slice/boardSlice";
-import { STORAGE_KEYS, ANIMATION_DURATION } from "../../constants";
+import { STORAGE_KEYS, ANIMATION_DURATION } from "@/types/types";
 import themeReducer from '../slice/themeSlice'
 const store = configureStore({
     reducer : {

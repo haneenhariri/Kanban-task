@@ -1,6 +1,6 @@
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import Task from "../Task/Task";
-import type { Task as TaskType } from "@/types/board.types";
+import type { Task as TaskType } from "@/types/types";
 
 interface Props {
   tasks: TaskType[];

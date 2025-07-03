@@ -4,7 +4,7 @@ import SubmitButton from "../Button/SubmitButton";
 import CloseButton from "../Button/CloseButton";
 import { useDispatch } from "react-redux";
 import { editeTask } from "@/redux/slice/boardSlice";
-import type { EditFormTaskProps } from "@/types/board.types";
+import type { EditFormTaskProps } from "@/types/types";
 import Input from "../Input/Input";
 
 export default function EditFormTask({title , description , columnId , taskId , onClose} : EditFormTaskProps) {
