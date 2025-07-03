@@ -1,5 +1,5 @@
 import { memo } from "react";
-import type { ColumnProps } from "@/types/board.types";
+import type { ColumnProps } from "@/types/types";
 import ColumnHeader from "./ColumnHeader";
 import ColumnFooter from "./ColumnFooter";
 import ColumnTaskList from "./ColumnTaskList";

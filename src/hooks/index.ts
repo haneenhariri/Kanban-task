@@ -1,3 +1,3 @@
 // Hooks Barrel Export
-
-export { useDebounce } from './useDebounce';
+// This file serves as a central export point for custom React hooks
+// Currently empty - add new hooks here as they are created

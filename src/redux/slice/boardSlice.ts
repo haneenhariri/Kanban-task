@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { STORAGE_KEYS } from "../../constants";
+import { STORAGE_KEYS } from "@/types/types";
 
 export interface Task {
   id: string;

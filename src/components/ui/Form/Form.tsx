@@ -2,7 +2,7 @@ import { useCallback, useState, type FormEvent } from "react";
 import Input from "../Input/Input";
 import CloseButton from "../Button/CloseButton";
 import SubmitButton from "../Button/SubmitButton";
-import type { FormProps } from "../../../types/ui.types";
+import type { FormProps } from "@/types/types";
 
 
 export default function Form({ onClose, placeholder, onSubmit }: FormProps) {

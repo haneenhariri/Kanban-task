@@ -1,7 +1,7 @@
 import down from '@/assets/icons/arrow-down.svg'
 import up from '@/assets/icons/arrow-up.svg'
 import TaskTitle from '../ui/Titles/TaskTitle';
-import type { TaskHeaderProps } from '@/types/board.types';
+import type { TaskHeaderProps } from '@/types/types';
 
 export default function TaskHeader({ title, show, onToggle, dragHandleProps }: TaskHeaderProps) {
   return (
