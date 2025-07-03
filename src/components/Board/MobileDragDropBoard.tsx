@@ -43,7 +43,7 @@ export default function MobileDragDropBoard({ onAddColumn, addItemClassName }: M
     <DragDropContext
       onDragEnd={(result: DropResult) => handleDragEnd(result, columns, dispatch)}
     >
-      <main className="flex-1 overflow-y-auto overflow-x-hidden px-5 py-5">
+      <main className="flex-1 min-h-screen overflow-y-auto overflow-x-hidden px-5 py-5">
         <Droppable droppableId="board-mobile" direction="vertical" type="column">
           {(provided) => (
             <div

@@ -44,7 +44,7 @@ export default function BoardPage() {
       </div>
 
       {/* Mobile Layout - Vertical scrolling */}
-      <div className="sm:hidden">
+      <div className="sm:hidden  overflow-y-auto">
         <MobileDragDropBoard
           onAddColumn={handleAddColumn}
           addItemClassName={addItemClassName}
